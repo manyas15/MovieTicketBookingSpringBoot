@@ -29,4 +29,10 @@ public class WebController {
     public String myBookings() {
         return "bookings";
     }
+
+    // Alternative mapping for bookings page
+    @GetMapping("/bookings")
+    public String bookings() {
+        return "bookings";
+    }
 }

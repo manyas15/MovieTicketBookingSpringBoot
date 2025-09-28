@@ -42,7 +42,7 @@ public class Booking {
         System.out.println("Movie: " + movieTitle);
         System.out.println("Show Time: " + showTime);
         System.out.println("Seats: " + seats);
-        System.out.println("Total Price: $" + totalPrice);
+        System.out.println("Total Price: ₹" + totalPrice);
         System.out.println("=====================");
     }
 

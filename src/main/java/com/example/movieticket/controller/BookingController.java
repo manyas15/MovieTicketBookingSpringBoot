@@ -41,7 +41,13 @@ public class BookingController {
                 request.getSeats(),
                 request.getCustomerName()
         );
-        return "Booking successful! ID: " + booking.getId();
+
+        if (booking != null) {
+            return "Booking successful! ID: " + booking.getId()
+                    + ". Total Amount: ₹" + String.format("%.2f", booking.getTotalPrice());
+        } else {
+            return "Booking failed. Please check your details or try different seats.";
+        }
     }
 
     // Simple booking request class
@@ -83,6 +89,110 @@ public class BookingController {
 
         public void setCustomerName(String customerName) {
             this.customerName = customerName;
+        }
+    }
+
+    // ========================================
+    // YOUR CONTRIBUTION: Simple Coupon Features (Beginner-Friendly) 
+    // ========================================
+    /**
+     * YOUR CONTRIBUTION: Book tickets with simple coupon code support
+     */
+    @PostMapping("/with-coupon")
+    public String bookTicketsWithCoupon(@RequestBody BookingRequestWithCoupon request) {
+        Booking booking = bookingService.bookTicketsWithCoupon(
+                request.getMovieId(),
+                request.getShowId(),
+                request.getSeats(),
+                request.getCustomerName(),
+                request.getCouponCode()
+        );
+
+        if (booking != null) {
+            return "Booking successful with ID: " + booking.getId()
+                    + ". Total Amount: ₹" + String.format("%.2f", booking.getTotalPrice());
+        } else {
+            return "Booking failed. Please check your details.";
+        }
+    }
+
+    /**
+     * YOUR CONTRIBUTION: Get available discount coupons (simple feature)
+     */
+    @GetMapping("/coupons")
+    public java.util.Map<String, Double> getAvailableCoupons() {
+        return bookingService.getAvailableCoupons();
+    }
+
+    /**
+     * YOUR CONTRIBUTION: Check if coupon is valid (beginner validation)
+     */
+    @GetMapping("/coupons/{couponCode}/validate")
+    public String validateCoupon(@PathVariable String couponCode) {
+        if (bookingService.isValidCoupon(couponCode)) {
+            return "Coupon " + couponCode + " is valid!";
+        } else {
+            return "Invalid coupon code: " + couponCode;
+        }
+    }
+
+    /**
+     * YOUR CONTRIBUTION: Simple booking statistics
+     */
+    @GetMapping("/stats")
+    public String getBookingStats() {
+        int totalBookings = bookingService.getTotalBookings();
+        return "Total bookings made: " + totalBookings;
+    }
+
+    // YOUR CONTRIBUTION: Simple booking request with coupon support
+    public static class BookingRequestWithCoupon {
+
+        private int movieId;
+        private int showId;
+        private List<Integer> seats;
+        private String customerName;
+        private String couponCode;
+
+        // Basic getters and setters
+        public int getMovieId() {
+            return movieId;
+        }
+
+        public void setMovieId(int movieId) {
+            this.movieId = movieId;
+        }
+
+        public int getShowId() {
+            return showId;
+        }
+
+        public void setShowId(int showId) {
+            this.showId = showId;
+        }
+
+        public List<Integer> getSeats() {
+            return seats;
+        }
+
+        public void setSeats(List<Integer> seats) {
+            this.seats = seats;
+        }
+
+        public String getCustomerName() {
+            return customerName;
+        }
+
+        public void setCustomerName(String customerName) {
+            this.customerName = customerName;
+        }
+
+        public String getCouponCode() {
+            return couponCode;
+        }
+
+        public void setCouponCode(String couponCode) {
+            this.couponCode = couponCode;
         }
     }
 }
