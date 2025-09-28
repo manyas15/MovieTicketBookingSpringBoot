@@ -1,18 +1,22 @@
 package com.example.movieticket.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.stereotype.Service;
+
 import com.example.movieticket.model.Booking;
 import com.example.movieticket.model.Movie;
 import com.example.movieticket.model.Show;
-import org.springframework.stereotype.Service;
-
-import java.util.*;
 
 @Service
 public class BookingService {
 
     private Map<Integer, Booking> bookings;
     private int nextBookingId;
-    private double pricePerSeat = 10.0; // $10 per seat
+    private double pricePerSeat = 500.0; // ₹500 per seat
     private MovieService movieService;
 
     public BookingService(MovieService movieService) {
@@ -26,19 +30,19 @@ public class BookingService {
         // Find the movie
         Movie movie = movieService.findMovieById(movieId);
         if (movie == null) {
-            throw new IllegalArgumentException("Movie not found with ID: " + movieId);
+            return null; // Movie not found
         }
 
         // Find the show
         Show show = movie.findShowById(showId);
         if (show == null) {
-            throw new IllegalArgumentException("Show not found with ID: " + showId);
+            return null; // Show not found
         }
 
         // Check if all requested seats are available
         for (int seatNumber : seatNumbers) {
             if (!show.isSeatAvailable(seatNumber)) {
-                throw new IllegalStateException("Seat " + seatNumber + " is not available");
+                return null; // Seat not available
             }
         }
 

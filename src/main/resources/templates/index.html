@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Ticket Booking System</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-film"></i> Movie Ticket Booking System</h1>
+                <p>Welcome to the easiest way to book your movie tickets!</p>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="nav">
+            <ul class="nav-links">
+                <li><a href="/" class="active"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="/movies"><i class="fas fa-film"></i> Movies</a></li>
+                <li><a href="/booking"><i class="fas fa-ticket-alt"></i> Book Tickets</a></li>
+                <li><a href="/bookings"><i class="fas fa-list"></i> My Bookings</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <h2>🎬 Book Your Favorite Movies</h2>
+                    <p>Discover amazing movies and book tickets with just a few clicks!</p>
+                    <div class="hero-buttons">
+                        <a href="/movies" class="btn btn-primary">
+                            <i class="fas fa-play"></i> View Movies
+                        </a>
+                        <a href="/booking" class="btn btn-secondary">
+                            <i class="fas fa-ticket-alt"></i> Book Now
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section class="features">
+                <h3>Why Choose Our Service?</h3>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h4>Quick Booking</h4>
+                        <p>Book your tickets in under 2 minutes with our simple interface</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-couch"></i>
+                        </div>
+                        <h4>Seat Selection</h4>
+                        <p>Choose your preferred seats with real-time availability</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4>Secure & Safe</h4>
+                        <p>Your bookings are secure and confirmed instantly</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h4>Easy Access</h4>
+                        <p>Access from any device, anywhere, anytime</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Stats -->
+            <section class="stats">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number" id="totalMovies">-</div>
+                        <div class="stat-label">Movies Available</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="totalShows">-</div>
+                        <div class="stat-label">Shows Today</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="totalBookings">-</div>
+                        <div class="stat-label">Happy Customers</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="availableSeats">-</div>
+                        <div class="stat-label">Seats Available</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Latest Movies Preview -->
+            <section class="movie-preview">
+                <h3>🎭 Featured Movies</h3>
+                <div class="movie-grid" id="featuredMovies">
+                    <div class="loading">Loading movies...</div>
+                </div>
+                <div class="text-center">
+                    <a href="/movies" class="btn btn-outline">View All Movies</a>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p>&copy; 2025 Movie Ticket Booking System. Made with love for movie lovers!</p>
+                <div class="footer-links">
+                    <a href="#"><i class="fas fa-info-circle"></i> About</a>
+                    <a href="#"><i class="fas fa-envelope"></i> Contact</a>
+                    <a href="#"><i class="fas fa-question-circle"></i> Help</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/js/app.js"></script>
+    <script>
+        // Load page data when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            loadStats();
+            loadFeaturedMovies();
+        });
+    </script>
+</body>
+</html>
